@@ -62,12 +62,12 @@ class m180430_133317_orders extends Migration
             'product_id'
         );
 
-        //add foreign key for table products
+        //add foreign key for table index.php
         $this->addForeignKey(
             'fk-order-product_id',
             'orders',
             'product_id',
-            'products',
+            'index.php',
             'id'
         );
 

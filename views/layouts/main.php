@@ -89,7 +89,7 @@ SKINS
                     'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                     'items' => [
 
-                        ['label' => 'View Products', 'url' => ['site/index']],
+                        ['label' => 'View Products', 'url' => ['products/index']],
                         ['label' => 'Add New Product',
                             'url' => ['site/save'],
                             'icon' => 'fas fa-plus']
@@ -158,9 +158,3 @@ SKINS
 
 </html>
 <?php $this->endPage() ?>
-
-<!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
