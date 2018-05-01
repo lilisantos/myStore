@@ -3,8 +3,9 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Model;
 
-class Orders extends Model{
+class Orders extends \yii\db\ActiveRecord{
 
     public $id;
     public $date;
@@ -12,6 +13,7 @@ class Orders extends Model{
     public $totalAmount;
     public $product_id;
     public $user_id;
+
 
     public function rules()
     {

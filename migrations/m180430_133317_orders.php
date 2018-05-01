@@ -29,7 +29,7 @@ class m180430_133317_orders extends Migration
     // Use up()/down() to run migration code without a transaction.
     public function up()
     {
-        $this->createTable('orders', [
+        $this->createTable('order', [
             'id' => $this->primaryKey()->notNull(),
             'date' => $this->date()->notNull(),
             'quantity' => $this->integer()->notNull(),
@@ -41,7 +41,7 @@ class m180430_133317_orders extends Migration
         //add index/constraint for foreign key user_id
         $this->createIndex(
             'idx-order-user_id',
-            'orders',
+            'order',
             'user_id'
         );
 
@@ -49,7 +49,7 @@ class m180430_133317_orders extends Migration
         //add foreign key for table user
         $this->addForeignKey(
             'fk-order-user_id',
-            'orders',
+            'order',
             'user_id',
             'users',
             'id'
@@ -58,14 +58,14 @@ class m180430_133317_orders extends Migration
         //add index/constraint for foreign key product_id
         $this->createIndex(
             'idx-order-product_id',
-            'orders',
+            'order',
             'product_id'
         );
 
         //add foreign key for table index.php
         $this->addForeignKey(
             'fk-order-product_id',
-            'orders',
+            'order',
             'product_id',
             'index.php',
             'id'
@@ -81,25 +81,25 @@ class m180430_133317_orders extends Migration
 
         $this->dropIndex(
             'idx-order-user_id',
-            'orders'
+            'order'
         );
 
         $this->dropForeignKey(
             'fk-order-user_id',
-            'orders'
+            'order'
         );
 
         $this->dropIndex(
             'idx-order-product_id',
-            'orders'
+            'order'
         );
 
         $this->dropForeignKey(
             'fk-order-product_id',
-            'orders'
+            'order'
         );
 
-        $this->dropTable('orders');
+        $this->dropTable('order');
 
         return false;
     }

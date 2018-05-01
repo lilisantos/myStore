@@ -15,7 +15,7 @@ use yii\helpers\Html;
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <td>order</td>
+                            <td>Order</td>
                             <td>Quantity</td>
                             <td>Date</td>
                             <td>Total Amount</td>

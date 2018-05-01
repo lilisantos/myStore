@@ -41,7 +41,7 @@ class ProductController extends Controller
         if(!$model->delete())
             Yii::$app->session->setFlash('error', 'Unable to delete model');
 
-        $this->redirect('products/index');
+        $this->redirect('product/index');
 
     }
 
@@ -59,8 +59,8 @@ class ProductController extends Controller
             if ($model->save())
             {
                 Yii::$app->session->setFlash('success', 'Model has been saved');
-                $this->redirect($this->createUrl('save', array('id' => $model->id)));
-                $this->redirect('site/index');
+//                $this->redirect($this->createUrl('save', array('id' => $model->id)));
+                $this->redirect('product/index');
             }
             else
                 Yii::$app->session->setFlash('error', 'Model could not be saved');
@@ -68,4 +68,24 @@ class ProductController extends Controller
 
         \Yii::$app->response->data = $this->render('save', array('model' => $model));
     }
+
+    public function getProducts(){
+        $query = Products::find();
+
+        $pagination = new Pagination([
+            'defaultPageSize' => 5,
+            'totalCount' => $query->count(),
+        ]);
+
+        $products = $query->orderBy('name')
+            ->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->all();
+
+        return $this->render('index', [
+            'products' => $products,
+            'pagination' => $pagination,
+        ]);
+    }
+
 }

@@ -78,6 +78,9 @@ SKINS
             <!-- Sidebar toggle button-->
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
             </a>
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                <i class="fa fa-bars"></i>
+            </button>
         </nav>
     </header>
 
@@ -89,10 +92,20 @@ SKINS
                     'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                     'items' => [
 
-                        ['label' => 'View Products', 'url' => ['products/index']],
-                        ['label' => 'Add New Product',
-                            'url' => ['site/save'],
-                            'icon' => 'fas fa-plus']
+                        ['label' => 'Home',
+                            'url' => ['site/index'],
+                            'icon' => 'fas fa-home'
+                        ],
+                        ['label' => 'View Products', 'url' => ['product/index']],
+                        ['label' => 'New Product',
+                            'url' => ['product/save'],
+                            'icon' => 'fas fa-plus'
+                        ],
+                        ['label' => 'View Orders', 'url' => ['order/index']],
+                        ['label' => 'New Order',
+                            'url' => ['order/save'],
+                            'icon' => 'fas fa-plus'
+                        ]
 
                     ]
                 ]
@@ -158,3 +171,4 @@ SKINS
 
 </html>
 <?php $this->endPage() ?>
+
