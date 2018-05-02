@@ -14,6 +14,8 @@ use app\models\ContactForm;
 use yii\web\HttpException;
 use yii\helpers\Html;
 use yii\db\ActiveRecord;
+use yii\widgets\ListView;
+use yii\data\ActiveDataProvider;
 
 Class OrderController extends Controller{
 
@@ -40,8 +42,19 @@ Class OrderController extends Controller{
 
     public function actionSave($id=NULL)
     {
-        $prodCtl = new Products();
-        $products = $prodCtl->getProducts();
+        /*$products = new ActiveDataProvider([
+            'query' => Products::find(),
+            'pagination' => [
+                'pageSize' => 20,
+            ],
+        ]);
+
+        echo ListView::widget([
+            'dataProvider' => $products,
+            'itemView' => '/order/save',
+        ]);*/
+
+        $products = Products::find()->select(['id', 'name'])->all();
 
         if ($id == NULL)
             $model = new Orders();

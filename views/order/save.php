@@ -1,6 +1,9 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Products;
+
 ?>
 <?php $form = ActiveForm::begin(array(
     'options' => array('role' => 'form'),
@@ -18,12 +21,9 @@ use yii\widgets\ActiveForm;
                 <div class="box-body">
                     <div class="form-group">
                         <div class="col-md-9">
-                            <?= $form->field($model, 'product')->dropdownList([
-                                1 => 'item 1',
-                                2 => 'item 2'
-                            ],
-                                ['prompt'=>'Select Category']
-                            ); ?>
+                            <div class="post">
+                                <?php $products = ArrayHelper::map(Products::find()->all(), 'id', 'name');?>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -37,7 +37,7 @@ use yii\widgets\ActiveForm;
                         <div class="col-md-9">
                             <!--                            <label>Price</label>-->
                             <!--                            <input type="number" class="form-control" id="price" placeholder="Enter product price">-->
-                            <?= $form->field($model, 'price')->textInput(array('class' => 'form-control')); ?>
+<!--                            //= $form->field($model, 'price')->textInput(array('class' => 'form-control')); ?>-->
                         </div>
 
                     </div>

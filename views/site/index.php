@@ -17,7 +17,7 @@ use yii\helpers\Url;
                 <h3>View Orders</h3>
             </div>
             <div class="icon">
-                <i class="fas fa-clipboard-list"></i>
+                <i class="fa fa-list"></i>
             </div>
             <?= Html::a('More Info', ['/order/index'], ['class'=>'small-box-footer']) ?>
         </div>
@@ -44,7 +44,7 @@ use yii\helpers\Url;
                 <h3>View Products</h3>
             </div>
             <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa fa-list"></i>
             </div>
             <?= Html::a('More Info', ['/product/index'], ['class'=>'small-box-footer']) ?>
 
@@ -58,7 +58,7 @@ use yii\helpers\Url;
                 <h3>New Product</h3>
             </div>
             <div class="icon">
-                <i class="ion ion-person-add"></i>
+                <i class="fa fa-plus"></i>
             </div>
             <?= Html::a('More Info', ['/product/save'], ['class'=>'small-box-footer']) ?>
         </div>
