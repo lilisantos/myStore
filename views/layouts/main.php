@@ -81,6 +81,29 @@ SKINS
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <i class="fa fa-bars"></i>
             </button>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span class="hidden-xs">Alexander Pierce</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header">
+                               <p>Alexander Pierce - Web Developer</p>
+                            </li>
+
+                            <li class="user-footer">
+
+                                <div class="pull-right">
+                                    <?= Html::a('Sign Out', ['/user/logout'], ['class'=>'btn btn-default btn-flat']) ?>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
