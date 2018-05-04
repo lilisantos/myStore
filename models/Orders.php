@@ -25,6 +25,17 @@ class Orders extends \yii\db\ActiveRecord{
         ];
     }
 
+    public function relations()
+    {
+        return array(
+            'users' => array(self::BELONGS_TO, 'Users', 'user_id'),
+
+            'products' => array(self::BELONGS_TO, 'Products', 'product_id'),
+        );
+
+
+    }
+
     /**
      * @return array customized attribute labels
      */

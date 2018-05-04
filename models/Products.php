@@ -36,6 +36,14 @@ class Products extends \yii\db\ActiveRecord
         ];
     }
 
+    public function relations()
+    {
+        return array(
+            'orders' => array(self::HAS_MANY, 'Orders', 'product_id'),
+        );
+
+    }
+
     /**
      * @inheritdoc
      */

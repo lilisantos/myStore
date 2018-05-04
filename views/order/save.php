@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Products;
+use app\controllers\OrderController;
 
 ?>
 <?php $form = ActiveForm::begin(array(
@@ -21,23 +22,20 @@ use app\models\Products;
                 <div class="box-body">
                     <div class="form-group">
                         <div class="col-md-9">
-                            <div class="post">
-                                <?php $products = ArrayHelper::map(Products::find()->all(), 'id', 'name');?>
-                            </div>
+                            <label>Products</label>
+                            <?= Html::activeDropDownList($model, 'product_id', $products,
+                                ['class' => 'form-control']); ?>
+
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-9">
-                            <label>Description</label>
-                            <textarea class="form-control" id="description" placeholder="Enter product description"></textarea>
-<!--                  <!--<//= $form->field($model, 'description')->textArea(array('class' => 'form-control')); -->
+                            <?php echo $form->field($model, 'quantity')->textInput(array('class' => 'form-control')); ?>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-9">
-                            <!--                            <label>Price</label>-->
-                            <!--                            <input type="number" class="form-control" id="price" placeholder="Enter product price">-->
-<!--                            //= $form->field($model, 'price')->textInput(array('class' => 'form-control')); ?>-->
+                            <?php echo $form->field($model, 'totalAmount')->textInput(array('class' => 'form-control')); ?>
                         </div>
 
                     </div>

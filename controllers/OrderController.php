@@ -7,15 +7,8 @@ use app\models\Products;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
-use yii\web\HttpException;
-use yii\helpers\Html;
-use yii\db\ActiveRecord;
-use yii\widgets\ListView;
-use yii\data\ActiveDataProvider;
+use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 Class OrderController extends Controller{
 
@@ -42,19 +35,8 @@ Class OrderController extends Controller{
 
     public function actionSave($id=NULL)
     {
-        /*$products = new ActiveDataProvider([
-            'query' => Products::find(),
-            'pagination' => [
-                'pageSize' => 20,
-            ],
-        ]);
 
-        echo ListView::widget([
-            'dataProvider' => $products,
-            'itemView' => '/order/save',
-        ]);*/
-
-        $products = Products::find()->select(['id', 'name'])->all();
+        $products = ArrayHelper::map(Products::find()->all(), 'id', 'name');
 
         if ($id == NULL)
             $model = new Orders();
@@ -64,6 +46,8 @@ Class OrderController extends Controller{
         if (isset($_POST['Orders']))
         {
             $model->load($_POST);
+
+
 
             if ($model->save())
             {
@@ -75,9 +59,9 @@ Class OrderController extends Controller{
                 Yii::$app->session->setFlash('error', 'Model could not be saved');
         }
 
-        \Yii::$app->response->data = $this->render('save', array('model' => $model));
+        \Yii::$app->response->data = $this->render('save', ['model' => $model, 'products' => $products]);
 
-        return $products;
+
     }
 
 

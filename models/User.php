@@ -19,6 +19,14 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
         ];
     }
 
+    public function relations()
+    {
+        return array(
+            'orders' => array(self::HAS_MANY, 'Orders', 'user_id'),
+        );
+
+    }
+
     /**
      * {@inheritdoc}
      */
