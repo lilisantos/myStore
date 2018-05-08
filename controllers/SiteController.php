@@ -21,23 +21,23 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-//            'access' => [
-//                'class' => AccessControl::className(),
-//                'only' => ['index'],
-//                'rules' => [
-//                    [
-//                        'actions' => ['logout'],
-//                        'allow' => true,
-//                        'roles' => ['@'],
-//                    ],
-//                ],
-//            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['save', 'delete', 'logout'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'save', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
+//            'verbs' => [
+//                'class' => VerbFilter::className(),
+//                'actions' => [
+//                    'logout' => ['site/index'],
+//                ],
+//            ],
         ];
     }
 
@@ -65,11 +65,20 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $models = Products::find()->all();
+//        $models = Products::find()->all();
 
-        //        return $this->render('index', array('models' => $models));
-        \Yii::$app->response->data = $this->render('index', array('models' => $models));
+        return $this->render('index');
+//        \Yii::$app->response->data = $this->render('index', array('models' => $models));
 
+    }
+
+    public function actionTestPermission($userId){
+        $auth = Yii::$app->authManager;
+
+        echo "<p>Index Products: {$auth->checkAccess($userId, 'products/index')}</p>";
+        echo "<p>Add Products: {$auth->checkAccess($userId, 'products/add')}</p>";
+        echo "<p>Add Order: {$auth->checkAccess($userId, 'orders/add')}</p>";
+        echo "<p>Delete Product: {$auth->checkAccess($userId, 'products/delete')}</p>";
     }
 
     /**
@@ -77,21 +86,23 @@ class SiteController extends Controller
      *
      * @return Response|string
      */
-    public function actionLogin()
-    {
-        if (!\Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionLogin()
+//    {
+//        $this->layout = 'signin';
+//
+//        if (!\Yii::$app->user->isGuest) {
+//            return $this->goHome();
+//        }
+//
+//        $model = new LoginForm();
+//        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+//            return $this->goBack();
+//        } else {
+//            return $this->render('login', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     private function loadModel($id)
     {
@@ -103,7 +114,7 @@ class SiteController extends Controller
         return $model;
     }
 
-/*    public function actionLogin()
+    public function actionLogin()
     {
         $this->layout = 'signin';
 
@@ -119,7 +130,7 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
-    }*/
+    }
 
 
     /**

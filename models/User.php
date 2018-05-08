@@ -46,16 +46,16 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public static function findIdentityByAccessToken($token, $type = null)
-    {
-        $user = self::find()
-            ->where(["accessToken" => $token])
-            ->one();
-        if (!count($user)) {
-            return null;
-        }
-        return new static($user);
-    }
+//    public static function findIdentityByAccessToken($token, $type = null)
+//    {
+//        $user = self::find()
+//            ->where(["accessToken" => $token])
+//            ->one();
+//        if (!count($user)) {
+//            return null;
+//        }
+//        return new static($user);
+//    }
 
     /**
      * Finds user by username
@@ -87,18 +87,18 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-    public function getAuthKey()
-    {
-        return $this->authKey;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function validateAuthKey($authKey)
-    {
-        return $this->authKey === $authKey;
-    }
+//    public function getAuthKey()
+//    {
+//        return $this->authKey;
+//    }
+//
+//    /**
+//     * {@inheritdoc}
+//     */
+//    public function validateAuthKey($authKey)
+//    {
+//        return $this->authKey === $authKey;
+//    }
 
     /**
      * Validates password
