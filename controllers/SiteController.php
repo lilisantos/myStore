@@ -32,12 +32,12 @@ class SiteController extends Controller
                     ],
                 ],
             ],
-//            'verbs' => [
-//                'class' => VerbFilter::className(),
-//                'actions' => [
-//                    'logout' => ['site/index'],
-//                ],
-//            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'logout' => ['post'],
+                ],
+            ],
         ];
     }
 
@@ -66,6 +66,10 @@ class SiteController extends Controller
     {
 
 //        $models = Products::find()->all();
+//        $myComponent = Yii::$app->myComponent;
+//
+//        $myComponent->printString();
+//        die;
 
         return $this->render('index');
 //        \Yii::$app->response->data = $this->render('index', array('models' => $models));

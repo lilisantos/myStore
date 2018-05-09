@@ -3,10 +3,18 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\data\ActiveDataProvider;
+use app\classes\widgets\HelloWidget;
+use \app\classes\widgets\HelloWorldBeginEndWidget;
 
 use yii\helpers\Url;
 
 ?>
+
+<div>
+    <?= HelloWidget::widget(); ?>
+
+
+</div>
 
 <!-- Small boxes (Stat box) -->
 <div class="row">
