@@ -4,8 +4,9 @@ namespace app\models;
 use Yii;
 
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
-class User extends ActiveRecord implements \yii\web\IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
     public static function tableName()
     {
@@ -32,30 +33,32 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findIdentity($id)
     {
+//        $user = self::find()
+//            ->where([
+//                "id" => $id
+//            ])
+//            ->one();
+//        if (!count($user)) {
+//            return null;
+//        }
+//        return new static($user);
+
+        return static::findOne($id);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
         $user = self::find()
-            ->where([
-                "id" => $id
-            ])
+            ->where(["accessToken" => $token])
             ->one();
         if (!count($user)) {
             return null;
         }
         return new static($user);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-//    public static function findIdentityByAccessToken($token, $type = null)
-//    {
-//        $user = self::find()
-//            ->where(["accessToken" => $token])
-//            ->one();
-//        if (!count($user)) {
-//            return null;
-//        }
-//        return new static($user);
-//    }
 
     /**
      * Finds user by username
@@ -65,15 +68,9 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
      */
     public static function findByUsername($username)
     {
-        $user = self::find()
-            ->where([
-                "username" => $username
-            ])
-            ->one();
-        if (!count($user)) {
-            return null;
-        }
-        return new static($user);
+        $user = self::find()->where(["username" => Yii::$app->request->post('username')])->one();
+
+        return $user;
     }
 
     /**
@@ -87,18 +84,18 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     /**
      * {@inheritdoc}
      */
-//    public function getAuthKey()
-//    {
-//        return $this->authKey;
-//    }
-//
-//    /**
-//     * {@inheritdoc}
-//     */
-//    public function validateAuthKey($authKey)
-//    {
-//        return $this->authKey === $authKey;
-//    }
+    public function getAuthKey()
+    {
+        return $this->authKey;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->authKey === $authKey;
+    }
 
     /**
      * Validates password

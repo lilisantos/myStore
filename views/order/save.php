@@ -23,22 +23,32 @@ use app\controllers\OrderController;
                     <div class="form-group">
                         <div class="col-md-9">
                             <label>Products</label>
-                            <?= Html::activeDropDownList($model, 'product_id', $products,
-                                ['class' => 'form-control']); ?>
+<!--                              -<//= Html::activeDropDownList(
+//                                    $model,
+//                                    'product_id',
+//                                    $products,
+//                                    ['class' => 'form-control']); ?>-->
+
+                            <select id="orders-product_id" class="form-control" name="Orders[product_id]">
+                                <option>Select a product...</option>
+                                <?php foreach ($products as $product):?>
+                                    <option value="<?= $product->id; ?>"><?= $product->name; ?></option>
+                                <?php endforeach;?>
+                            </select>
 
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-9">
-                            <?php echo $form->field($model, 'quantity')->textInput(array('class' => 'form-control')); ?>
+                            <?php echo $form->field($model, 'quantity')->textInput(['class' => 'form-control']); ?>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-9">
-                            <?php echo $form->field($model, 'totalAmount')->textInput(array('class' => 'form-control')); ?>
-                        </div>
-
-                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <div class="col-md-9">-->
+<!--                            <php //echo $form->field($model, 'totalAmount')->textInput(array('class' => 'form-control')); ?>
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
                 </div>
 
                 <div class="box-footer">

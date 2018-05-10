@@ -4,8 +4,9 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class Orders extends \yii\db\ActiveRecord{
+class Orders extends ActiveRecord{
 
     public $id;
     public $date;
@@ -13,12 +14,12 @@ class Orders extends \yii\db\ActiveRecord{
     public $totalAmount;
     public $product_id;
     public $user_id;
-
+    public $products;
 
     public function rules()
     {
         return [
-            [['date', 'quantity', 'totalAmount'], 'required'],
+            [['product_id', 'quantity'], 'required'],
             [['date'], 'date'],
             [['quantity'], 'number'],
             [['totalAmount'], 'double']
@@ -33,7 +34,11 @@ class Orders extends \yii\db\ActiveRecord{
             'products' => array(self::BELONGS_TO, 'Products', 'product_id'),
         );
 
+    }
 
+    public function getProducts()
+    {
+        return $this->belongsTo(Products::className(), ['product_id' => 'id']);
     }
 
     /**

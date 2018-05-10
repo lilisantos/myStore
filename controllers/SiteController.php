@@ -23,10 +23,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['save', 'delete', 'logout'],
+                'only' => ['index'],
                 'rules' => [
                     [
-                        'actions' => ['index', 'save', 'delete'],
+//                        'actions' => ['save', 'delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -76,14 +76,15 @@ class SiteController extends Controller
 
     }
 
-    public function actionTestPermission($userId){
-        $auth = Yii::$app->authManager;
-
-        echo "<p>Index Products: {$auth->checkAccess($userId, 'products/index')}</p>";
-        echo "<p>Add Products: {$auth->checkAccess($userId, 'products/add')}</p>";
-        echo "<p>Add Order: {$auth->checkAccess($userId, 'orders/add')}</p>";
-        echo "<p>Delete Product: {$auth->checkAccess($userId, 'products/delete')}</p>";
-    }
+    //Testing Permissions
+//    public function actionTestPermission($userId){
+//        $auth = Yii::$app->authManager;
+//
+//        echo "<p>Index Products: {$auth->checkAccess($userId, 'products/index')}</p>";
+//        echo "<p>Add Products: {$auth->checkAccess($userId, 'products/add')}</p>";
+//        echo "<p>Add Order: {$auth->checkAccess($userId, 'orders/add')}</p>";
+//        echo "<p>Delete Product: {$auth->checkAccess($userId, 'products/delete')}</p>";
+//    }
 
     /**
      * Login action.
