@@ -14,7 +14,6 @@ class Orders extends ActiveRecord{
     public $totalAmount;
     public $product_id;
     public $user_id;
-    public $products;
 
     public function rules()
     {
@@ -49,5 +48,15 @@ class Orders extends ActiveRecord{
         return [
             'verifyCode' => 'Verification Code',
         ];
+    }
+
+    public function beforeSave($insert){
+        if($insert){
+            $this->date = date('Y-m-d', strtotime(Yii::$app->request->post('date')));
+
+            return TRUE;
+        }
+
+        return false;
     }
 }

@@ -40,15 +40,9 @@ use app\controllers\OrderController;
                     </div>
                     <div class="form-group">
                         <div class="col-md-9">
-                            <?php echo $form->field($model, 'quantity')->textInput(['class' => 'form-control']); ?>
+                            <?php echo $form->field($model, 'quantity')->textInput(['type' => 'number', 'class' => 'form-control']); ?>
                         </div>
                     </div>
-<!--                    <div class="form-group">-->
-<!--                        <div class="col-md-9">-->
-<!--                            <php //echo $form->field($model, 'totalAmount')->textInput(array('class' => 'form-control')); ?>
-<!--                        </div>-->
-<!---->
-<!--                    </div>-->
                 </div>
 
                 <div class="box-footer">

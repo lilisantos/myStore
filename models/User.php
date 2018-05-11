@@ -68,9 +68,12 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        $user = self::find()->where(["username" => Yii::$app->request->post('username')])->one();
+//        $user = self::find()->where(['username' => Yii::$app->request->post('username')])->one();
 
-        return $user;
+        return static::findOne(['username' => $username]);
+
+
+//        return $user;
     }
 
     /**

@@ -48,6 +48,11 @@ class Products extends ActiveRecord
 
     }
 
+    public function getOrder()
+    {
+        return $this->hasMany(Orders::className(), ['id' => 'product_id']);
+    }
+
     /**
      * @inheritdoc
      */
