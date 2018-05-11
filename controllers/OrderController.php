@@ -46,7 +46,9 @@ Class OrderController extends Controller{
         if (isset($_POST['Orders'])) {
             $model->load($_POST);
 
-            $model->date = date('Y-m-d');
+            $date = date('Y-m-d');
+
+            $model->date = date('Y-m-d', strtotime($date));
 
             $prodPrice = Products::findOne($model->product_id);
 
@@ -61,6 +63,7 @@ Class OrderController extends Controller{
             print_r("Product:  {$model->product_id}\n");
             print_r("Product price: {$prodPrice->price}\n");
             print_r("User: {$model->user_id}\n");
+            var_dump($model);
 //
 //            print_r($model->getErrors());
 
