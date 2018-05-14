@@ -33,39 +33,46 @@ Class OrderController extends Controller{
 
     }
 
+    private function loadModel($id)
+    {
+        $model = Orders::find()->where(['id' => $id])->one();
+
+        if ($model == NULL)
+            throw new HttpException(404, 'Model not found.');
+
+        return $model;
+    }
+
     public function actionSave($id=NULL)
     {
-
         $products = Products::find()->all();
 
         if ($id == NULL)
-            $model = new Orders();
+            $model = new Orders;
         else
             $model = $this->loadModel($id);
+
 
         if (isset($_POST['Orders'])) {
             $model->load($_POST);
 
-            $date = date('Y-m-d');
-
-            $model->date = date('Y-m-d', strtotime($date));
+            $date = Yii::$app->formatter->asDate('now', 'php:Y-m-d');
+            $model->date = $date;
 
             $prodPrice = Products::findOne($model->product_id);
-
-            $model->totalAmount = ($prodPrice->price * $model->quantity);
+            $model->total_amount = ($prodPrice->price * $model->quantity);
 
             $model->user_id = Yii::$app->user->id;
 
             echo "<pre>";
             print_r("Quantity: {$model->quantity}\n");
             print_r("Date: {$model->date}\n");
-            print_r("Total Amount: {$model->totalAmount}\n");
+            print_r("Total Amount: {$model->total_amount}\n");
             print_r("Product:  {$model->product_id}\n");
             print_r("Product price: {$prodPrice->price}\n");
             print_r("User: {$model->user_id}\n");
-            var_dump($model);
-//
-//            print_r($model->getErrors());
+//            var_dump($model->attributes);
+//            die;
 
             echo "</pre>";
 
@@ -73,7 +80,7 @@ Class OrderController extends Controller{
             if ($model->save()) {
 
                 Yii::$app->session->setFlash('success', 'Model has been saved');
-                $this->createUrl('save', array('id' => $model->id));
+//                $this->createUrl('save', array('id' => $model->id));
                 $this->redirect('order/index');
             } else
 
@@ -85,6 +92,15 @@ Class OrderController extends Controller{
 
         \Yii::$app->response->data = $this->render('save', ['model' => $model, 'products' => $products]);
 
+    }
+
+    public function actionDelete($id = NULL){
+        $model =  $this->loadModel($id);
+
+        if(!$model->delete())
+            Yii::$app->session->setFlash('error', 'Unable to delete model');
+
+        $this->redirect('order/index');
 
     }
 

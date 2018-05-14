@@ -23,12 +23,6 @@ use app\controllers\OrderController;
                     <div class="form-group">
                         <div class="col-md-9">
                             <label>Products</label>
-<!--                              -<//= Html::activeDropDownList(
-//                                    $model,
-//                                    'product_id',
-//                                    $products,
-//                                    ['class' => 'form-control']); ?>-->
-
                             <select id="orders-product_id" class="form-control" name="Orders[product_id]">
                                 <option>Select a product...</option>
                                 <?php foreach ($products as $product):?>

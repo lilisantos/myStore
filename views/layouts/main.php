@@ -37,12 +37,6 @@ AppAsset::register($this);
     <!-- Theme style -->
     <?php $this->head() ?>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 
 </head>
 <!--------------------------------------------------------
@@ -77,6 +71,7 @@ SKINS
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
             <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+
             </a>
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                 <i class="fa fa-bars"></i>
@@ -194,4 +189,6 @@ SKINS
 
 </html>
 <?php $this->endPage() ?>
+
+<?php $this->registerCssFile("/vendor/almasaeed2010/adminlte/build/less/header.less"); ?>
 

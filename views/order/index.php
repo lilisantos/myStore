@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 
+use app\models\Products;
+use app\models\User;
+
 ?>
 
 <div class="container">
@@ -15,7 +18,8 @@ use yii\helpers\Html;
                 <div class="box-body">
                     <table class="table table-bordered">
                         <tr>
-                            <td>Order</td>
+                            <td>#Order</td>
+                            <td>Product</td>
                             <td>Quantity</td>
                             <td>Date</td>
                             <td>Total Amount</td>
@@ -24,19 +28,24 @@ use yii\helpers\Html;
                         </tr>
                         <?php foreach ($models as $order): ?>
                             <tr>
+                               <?php $product = Products::findOne($order->product_id); ?>
+                               <?php $user = User::findOne($order->user_id); ?>
 
-                                <td> <?= Html::a($order->product->name, array('site/save', 'id'=>$order->id));?></td>
-                                <td> <?= Html::a($order->quantity, array('site/save', 'id'=>$order->id)); ?></td>
-                                <td> <?= Html::a($order->date, array('site/save', 'id'=>$order->id));?> </td>
-                                <td> <?= Html::a($order->totalAmount, array('site/save', 'id'=>$order->id));?> </td>
-                                <td> <?= Html::a($order->user->username, array('site/save', 'id'=>$order->id));?> </td>
+                                <td> <?= Html::a($order->id, ['order/save', 'id'=>$order->id]);?></td>
+                                <td> <?= Html::a($product->name, ['order/save', 'id'=>$order->id]);?></td>
+                                <td> <?= Html::a($order->quantity, ['order/save', 'id'=>$order->id]); ?></td>
+                                <td> <?= Html::a(Yii::$app->formatter->format($order->date, 'date'),
+                                        ['order/save', 'id'=>$order->id]);?> </td>
+                                <td> <?= Html::a(Yii::$app->formatter->format($order->total_amount, 'currency'),
+                                        ['order/save', 'id'=>$order->id]);?> </td>
+                                <td> <?= Html::a($user->username, ['order/save', 'id'=>$order->id]);?> </td>
                                 <td>
                                     <?= Html::a('update',
-                                        array('site/save', 'id'=>$order->id),
+                                        ['order/save', 'id'=>$order->id],
                                         ['class' => 'btn btn-block btn-primary']
                                     );?>
                                     <?= Html::a('delete',
-                                        array('site/delete', 'id'=>$order->id),
+                                        ['order/delete', 'id'=>$order->id],
                                         ['class' => 'btn btn-block btn-danger']
                                     );?>
                                 </td>

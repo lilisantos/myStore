@@ -8,20 +8,20 @@ use yii\db\ActiveRecord;
 
 class Orders extends ActiveRecord{
 
-    public $id;
-    public $date;
-    public $quantity;
-    public $totalAmount;
-    public $product_id;
-    public $user_id;
+//    public $id;
+//    public $date;
+//    public $quantity;
+//    public $totalAmount;
+//    public $product_id;
+//    public $user_id;
 
     public function rules()
     {
         return [
-            [['product_id', 'quantity'], 'required'],
-            [['date'], 'date'],
+            [['product_id', 'quantity', 'date'], 'required'],
+            [['date'], 'date', 'format' => 'php:Y-m-d'],
             [['quantity'], 'number'],
-            [['totalAmount'], 'double']
+            [['total_amount'], 'double']
         ];
     }
 
@@ -50,13 +50,5 @@ class Orders extends ActiveRecord{
         ];
     }
 
-    public function beforeSave($insert){
-        if($insert){
-            $this->date = date('Y-m-d', strtotime(Yii::$app->request->post('date')));
 
-            return TRUE;
-        }
-
-        return false;
-    }
 }
