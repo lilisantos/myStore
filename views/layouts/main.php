@@ -190,5 +190,3 @@ SKINS
 </html>
 <?php $this->endPage() ?>
 
-<?php $this->registerCssFile("/vendor/almasaeed2010/adminlte/build/less/header.less"); ?>
-

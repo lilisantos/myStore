@@ -54,6 +54,15 @@ $config = [
             'thousandSeparator' => ' ',
             'currencyCode' => 'EUR',
         ],
+        'view' => [
+            'theme' => [
+                'basePath' => '@app/vendor/almasaeed2010/adminlte',
+//                'baseUrl' => '@web/themes/flat',
+//                'pathMap' => [
+//                    '@app/views' => '@app/themes/flat/views',
+//                ],
+            ],
+        ],
         'db' => $db,
         /*
         'urlManager' => [
